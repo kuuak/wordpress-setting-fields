@@ -2,6 +2,8 @@
 
 namespace Kuuak\WordPressSettingFields;
 
+define( 'WSFD_VERSION', '1.0.0' );
+
 class Fields {
 
 	public static function text($args) {
@@ -30,16 +32,6 @@ class Fields {
 
 	public static function dropdown( $args ) {
 
-		if ( isset($args['multiple']) && $args['multiple'] ) {
-			wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css' );
-			wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', ['jquery'] );
-
-			add_filter('sctx-admin-script-deps', function($deps) {
-				$deps[] = 'select2';
-				return $deps;
-			});
-		}
-
 		$defaults = [
 			'selected'        => [],
 			'echo'            => true,
@@ -52,6 +44,8 @@ class Fields {
 
 		// Parse incoming $args into an array and merge it with $defaults.
 		$args = wp_parse_args( $args, $defaults );
+
+		if ( $args['multiple'] ) self::include_select2();
 
 		if ( !is_array($args['selected']) ) {
 			$args['selected'] = empty($args['selected']) ? [] : [ $args['selected'] ];
@@ -75,7 +69,10 @@ class Fields {
 		}
 
 		$attrs = [];
-		if ( $args['multiple'] ) $attrs[] = 'multiple data-multidropdown';
+		if ( $args['multiple'] ) {
+			$attrs[] = 'multiple';
+			$attrs['class'] = 'wsfd-nice-ui-dropdown';
+		};
 		if ( $args['required'] ) $attrs[] = 'required';
 		if ( !empty($args['placeholder']) ) $attrs[] = 'data-placeholder="'.esc_attr($args['placeholder']) .'"';
 
@@ -86,7 +83,7 @@ class Fields {
 			'<select name="%s" id="%s" %s class="regular-text">%s</select>',
 			esc_attr( $name ),
 			esc_attr( $args['id'] ?: $args['name'] ),
-			implode(' ', $attrs),
+			self::html_attrs($attrs),
 			implode("\n", $options)
 		);
 
@@ -275,7 +272,7 @@ class Fields {
 		}
 
 		$field = sprintf(
-			'<select name="%s[]" id="%s" multiple data-multi-select%s>%s</select>',
+			'<select name="%s[]" id="%s" multiple class="wsfd-nice-ui-dropdown" %s>%s</select>',
 			esc_attr( $parsed_args['name'] ),
 			esc_attr( $parsed_args['id'] ? $parsed_args['id'] : $parsed_args['name'] ),
 			( $parsed_args['required'] ? 'required' : '' ),
@@ -290,4 +287,20 @@ class Fields {
 		}
 	}
 
+	private static function get_lib_uri() {
+		// This is really hacky, but it works for now
+		return  trailingslashit(get_site_url()) . preg_replace("/(\/[^\/]+)$/", '', str_replace(ABSPATH, '', __DIR__) );
+	}
+
+	private static function include_select2() {
+
+		if ( wp_script_is('select2', 'enqueued') ) return;
+
+		wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css' );
+		wp_enqueue_script('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', ['jquery'] );
+
+		$lib_uri = self::get_lib_uri();
+
+		wp_enqueue_style('wsfd-dropdown-nice-ui', untrailingslashit($lib_uri). '/src/dropdown-nice-ui.css', null, WSFD_VERSION );
+	}
 }
