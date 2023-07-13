@@ -120,6 +120,50 @@ add_action( 'admin_init', function() {
 ```
 
 
+### Post type (dropdown)
+
+Name: **Kuuak\WordPressSettingFields\Fields::post_type_dropdown**
+
+Arguments:
+
+
+
+| name | type | mandatory | Description |
+| --- | --- | --- | --- |
+| query_args | array | false | WP_Query arguments. _See WP_Query::__construct() for accepted arguments_
+| name | string | true | Name of the dropdown
+| selected | int|string|int[]|string[] | false | Optional. Value of the option that should be selected. Default 0.
+| required | boolean | false | Optional. Whether the dropdown is required. Default false
+| placeholder | string | false | Optional. 
+| show_option_all | string | false | Optional. Option all label for the Multiple version. Default `All`
+| help | string | false | Optional. Help / description
+| echo | boolean | false | Optional. Either to print the dropdown or not. Default true.
+| nice_ui | boolean | false | Optional. Display as a nicer ui. Default true.
+
+> Example of usage
+
+```php
+add_action( 'admin_init', function() {
+  add_settings_field(
+    'my-setting-id',
+    __('My setting', 'my-setting-domain'),
+    'Kuuak\WordPressSettingFields\Fields::post_type_dropdown',
+    'setting-page-id',
+    'setting-section-id',
+    [
+      'label_for'   => 'my-setting-id',
+      'name'        => 'my-setting-name',
+      'selected'    => 254,
+      'query_args'  => [
+        'post_type'   => ['my-custome-post-type'],
+        'orderby'     => 'title',
+        'order'       => 'ASC',
+      ],
+    ]
+  );
+} );
+```
+
 ### Taxonomy (dropdown)
 
 Name: **Kuuak\WordPressSettingFields\Fields::taxonomy_dropdown**
