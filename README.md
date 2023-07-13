@@ -276,5 +276,17 @@ add_action( 'admin_init', function() {
 } );
 ```
 
+## Changelog
 
+### [1.1.0] - 2023-07-13
+
+- Add post_type_dropdown field [#4](https://github.com/kuuak/wordpress-setting-fields/issues/4)
+- Add switch nice ui styles [#2](https://github.com/kuuak/wordpress-setting-fields/issues/2)
+- Fix dropdown selected prop [#5](https://github.com/kuuak/wordpress-setting-fields/issues/5)
+- Fix readme descriptions [#1](https://github.com/kuuak/wordpress-setting-fields/issues/1)
+- Fix Select2 not inited for multi-dropdown
+
+### [1.0.0] - 2023-06-15
+
+- Initial release
 
