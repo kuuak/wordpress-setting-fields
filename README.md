@@ -16,8 +16,8 @@ Arguments:
 | name | string | true | Name of the input
 | value | string | false | Optional. Current value of the input
 | required | boolean | false | Optional. Whether the input is required. Default false
-| placeholder | string | false |
-Optional. | attrs | array | false | Optional. Extra html atrributes for the input. Attributes' name are the keys of the associative array.
+| placeholder | string | false | Optional. 
+| attrs | array | false | Optional. Extra html atrributes for the input. Attributes' name are the keys of the associative array.
 | help | string | false | Optional. Help / description
 
 > Example of usage
@@ -121,7 +121,7 @@ add_action( 'admin_init', function() {
 
 ### Taxonomy (dropdown)
 
-Name: **Kuuak\WordPressSettingFields\Fields::dropdown**
+Name: **Kuuak\WordPressSettingFields\Fields::taxonomy_dropdown**
 
 Arguments:
 
