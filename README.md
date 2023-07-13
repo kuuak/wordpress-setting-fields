@@ -98,6 +98,7 @@ Arguments:
 | name | string | true | Name of the input
 | checked | boolean | true |
 | help | string | false | Optional. Help / description
+| nice_ui | boolean | false | Optional. Display as a nicer ui. Default true.
 
 > Example of usage
 
