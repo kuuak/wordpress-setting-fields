@@ -53,7 +53,9 @@ class Fields {
 		// Parse incoming $args into an array and merge it with $defaults.
 		$args = wp_parse_args( $args, $defaults );
 
-		if ( !is_array($args['selected']) ) $args['selected'] = [];
+		if ( !is_array($args['selected']) ) {
+			$args['selected'] = empty($args['selected']) ? [] : [ $args['selected'] ];
+		}
 
 		$options = [];
 
@@ -248,7 +250,9 @@ class Fields {
 		unset( $get_terms_args['name'] );
 		$categories = get_terms( $get_terms_args );
 
-		if ( !is_array($parsed_args['selected']) ) $parsed_args['selected'] = [];
+		if ( !is_array($parsed_args['selected']) ) {
+			$parsed_args['selected'] = empty($parsed_args['selected']) ? [] : [ $parsed_args['selected'] ];
+		}
 
 		$options = array_map(function($cat) use ($parsed_args) {
 			return sprintf(
