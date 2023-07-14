@@ -227,10 +227,13 @@ class Fields {
 			'nice_ui'         => true,
 			'multiple'        => false,
 			'placeholder'     => false,
+			'attrs'           => [],
 		];
 
+		$attrs = wp_parse_args( $args['attrs'] ?? [], $defaults['attrs'] );
+
 		// Parse incoming $args into an array and merge it with $defaults.
-		$get_args = wp_parse_args( $args['query_args'], $defaults['query_args'] );
+		$get_args = wp_parse_args( $args['query_args'] ?? [], $defaults['query_args'] );
 		$args = wp_parse_args( $args, $defaults );
 
 		// Retrieve posts
@@ -271,7 +274,9 @@ class Fields {
 			);
 		}
 
-		$attrs = [];
+		if ( empty($attrs['class']) ) $attrs['class'] = [];
+		else if ( !is_array($attrs['class']) ) $attrs['class'] = explode(' ', $attrs['class']);
+
 		if ( $args['multiple'] ) {
 			$attrs[] = 'multiple';
 			$args['name'] .= '[]';
@@ -282,7 +287,7 @@ class Fields {
 			if ( !$args['multiple'] )	array_unshift( $options, '<option></option>' );
 		}
 
-		if ( $args['nice_ui'] ) $attrs['class'] = 'wsfd-nice-ui-dropdown';
+		if ( $args['nice_ui'] ) $attrs['class'][] = 'wsfd-nice-ui-dropdown';
 
 		$html = sprintf(
 			'<select name="%s" id="%s" %s>%s</select>',
@@ -317,6 +322,8 @@ class Fields {
 
 			// skip if false
 			if ($val === false) continue;
+
+			if ( is_array($val) ) $val = implode(' ', $val);
 
 			// append value if anything but bool(true)
 			if ($val !== true) $attribute .= '="'. esc_attr($val) .'"';
