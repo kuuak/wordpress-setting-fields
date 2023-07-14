@@ -282,6 +282,10 @@ add_action( 'admin_init', function() {
 
 ## Changelog
 
+### [1.1.2] - 2023-07-14
+
+- Fix post_type_dropdown selected
+
 ### [1.1.1] - 2023-07-14
 
 - Fix dropdowns placeholder
