@@ -252,7 +252,7 @@ class Fields {
 			$title = get_the_title($post_id);
 
 			$attrs = [];
-			if (in_array($post_id, $args['selected'] )) $attrs[] = 'selected';
+			if (in_array($post_id, $args['selected'] )) $attrs['selected'] = 'selected';
 			if ( $is_multi_type ) $attrs['data-label'] = get_post_type($post_id);
 
 			return sprintf(
@@ -317,6 +317,12 @@ class Fields {
 
 		$attrs = [];
 		foreach ($data as $k => $val) {
+
+			if ( is_int($k) ) {
+				$k = $val;
+				$val = true;
+			}
+
 			// vars
 			$attribute = "$k";
 
