@@ -139,6 +139,7 @@ Arguments:
 | help | string | false | Optional. Help / description
 | echo | boolean | false | Optional. Either to print the dropdown or not. Default true.
 | nice_ui | boolean | false | Optional. Display as a nicer ui. Default true.
+| attrs | array | false | Optional. Extra html atrributes for the select input. Attributes' name are the keys of the associative array.
 
 > Example of usage
 
@@ -158,6 +159,9 @@ add_action( 'admin_init', function() {
         'post_type'   => ['my-custome-post-type'],
         'orderby'     => 'title',
         'order'       => 'ASC',
+      ],
+       'attrs'     => [
+        'class' => 'large-text'
       ],
     ]
   );
@@ -254,7 +258,7 @@ Arguments:
 | action | array | false | Action data
 | action.name | string | true | Action name
 | action.value | string | true | Action value
-| wrapper_attrs | array | false | Action data
+| wrapper_attrs | array | false | Optional. Extra html atrributes for the wrapper. Attributes' name are the keys of the associative array.
 | help | string | false | Optional. Help / description. Default empty
 
 > Example of usage
@@ -277,6 +281,11 @@ add_action( 'admin_init', function() {
 ```
 
 ## Changelog
+
+### [1.1.1] - 2023-07-14
+
+- Fix dropdowns placeholder
+- Improve post_type_dropdown props to include attrs
 
 ### [1.1.0] - 2023-07-13
 
