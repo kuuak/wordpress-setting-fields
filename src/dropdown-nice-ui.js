@@ -14,6 +14,7 @@ function niceUiDropdown() {
 		(el) => {
 			window.jQuery(el).select2({
 				templateResult: formatLabel,
+				placeholder: el.dataset.placeholder ?? null,
 			});
 		}
 	);

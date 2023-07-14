@@ -74,7 +74,7 @@ class Fields {
 			$attrs['class'] = 'wsfd-nice-ui-dropdown';
 		};
 		if ( $args['required'] ) $attrs[] = 'required';
-		if ( !empty($args['placeholder']) ) $attrs[] = 'data-placeholder="'.esc_attr($args['placeholder']) .'"';
+		if ( !empty($args['placeholder']) ) $attrs['data-placeholder'] = $args['placeholder'];
 
 		$name = $args['name'];
 		if ( $args['multiple'] ) $name .= '[]';
@@ -226,7 +226,7 @@ class Fields {
 			'required'        => false,
 			'nice_ui'         => true,
 			'multiple'        => false,
-			'placeholder'     => '',
+			'placeholder'     => false,
 		];
 
 		// Parse incoming $args into an array and merge it with $defaults.
@@ -277,7 +277,10 @@ class Fields {
 			$args['name'] .= '[]';
 		}
 		if ( $args['required'] ) $attrs[] = 'required';
-		if ( !empty($args['placeholder']) ) $attrs['data-placeholder'] = $args['placeholder'];
+		if ( !empty($args['placeholder']) ) {
+			$attrs['data-placeholder'] = $args['placeholder'];
+			if ( !$args['multiple'] )	array_unshift( $options, '<option></option>' );
+		}
 
 		if ( $args['nice_ui'] ) $attrs['class'] = 'wsfd-nice-ui-dropdown';
 
@@ -340,6 +343,7 @@ class Fields {
 			'name'              => 'cat',
 			'id'                => '',
 			'required'          => false,
+			'placeholder'       => false,
 		];
 
 		// Parse incoming $args into an array and merge it with $defaults.
@@ -373,11 +377,15 @@ class Fields {
 			);
 		}
 
+		$attrs = [];
+		if ( $parsed_args['required'] ) $attrs[] = 'required';
+		if ( !empty($args['placeholder']) ) $attrs['data-placeholder'] = $args['placeholder'];
+
 		$field = sprintf(
 			'<select name="%s[]" id="%s" multiple class="wsfd-nice-ui-dropdown" %s>%s</select>',
 			esc_attr( $parsed_args['name'] ),
 			esc_attr( $parsed_args['id'] ? $parsed_args['id'] : $parsed_args['name'] ),
-			( $parsed_args['required'] ? 'required' : '' ),
+			self::html_attrs($attrs),
 			implode('', $options)
 		);
 
