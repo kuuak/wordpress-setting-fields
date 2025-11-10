@@ -2,6 +2,10 @@
 
 ### [Unreleased]
 
+### [1.2.1] - 2025-11-10
+
+- fix: 🐛 link picker opening
+
 ### [1.2.0] - 2025-11-10
 
 - feat: ✨ add link field type
