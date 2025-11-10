@@ -51,40 +51,10 @@
 		const $picker = $field.find(".wsfd-link-field__button-wrapper button");
 		const $editBtn = $field.find(".wsfd-link-field__action.-edit");
 		const $removeBtn = $field.find(".wsfd-link-field__action.-remove");
-		const $externalBtn = $field.find(".wsfd-link-field__action.-external");
-		const $linkUrl = $field.find(".wsfd-link-field__link-url");
 
 		// Need at least the picker button or action buttons to initialize
 		if (!$picker.length && !$editBtn.length) {
 			return;
-		}
-
-		/**
-		 * Ensure wpLink is initialized
-		 * The modal HTML is output via PHP in admin_footer, but wpLink.init() needs to be called
-		 * to set up the event handlers and input references
-		 */
-		function ensureWpLinkInitialized() {
-			if (typeof wpLink === "undefined") {
-				return false;
-			}
-
-			// Check if modal HTML exists (should be output by PHP)
-			if (!$("#wp-link-wrap").length || !$("#wp-link").length) {
-				return false;
-			}
-
-			// If wpLink hasn't been initialized yet, initialize it
-			// wpLink.init() sets up inputs object and event handlers
-			if (!wpLink.inputs || !wpLink.inputs.url || !wpLink.inputs.url.length) {
-				if (typeof wpLink.init === "function") {
-					wpLink.init();
-				} else {
-					return false;
-				}
-			}
-
-			return true;
 		}
 
 		/**
@@ -105,44 +75,23 @@
 				const currentText = $textInput.val() || "";
 				const currentTarget = $targetInput.val() === "_blank";
 
-				// Ensure wpLink is properly initialized before opening
-				let attempts = 0;
-				const maxAttempts = 20;
-				const tryOpen = function () {
-					if (ensureWpLinkInitialized()) {
-						// wpLink is initialized, open the modal using the hidden editor textarea
-						// wpLink.open() requires a textarea element (not an input) because it needs
-						// selectionStart, selectionEnd, and focus() methods
-						try {
-							wpLink.open(LINK_TEXTAREA_ID, currentUrl, currentText);
+				try {
+					wpLink.open(LINK_TEXTAREA_ID, currentUrl, currentText);
 
-							// Prefill the modal with current values after a short delay
-							setTimeout(function () {
-								const $urlField = $("#wp-link-url");
-								const $textField = $("#wp-link-text");
-								const $targetField = $("#wp-link-target");
+					// Prefill the modal with current values after a short delay
+					setTimeout(function () {
+						const $urlField = $("#wp-link-url");
+						const $textField = $("#wp-link-text");
+						const $targetField = $("#wp-link-target");
 
-								if ($urlField.length) $urlField.val(currentUrl);
-								if ($textField.length) $textField.val(currentText);
-								if ($targetField.length)
-									$targetField.prop("checked", currentTarget);
-							}, 100);
-						} catch (e) {
-							console.error("Error opening wpLink:", e);
-						}
-					} else if (attempts < maxAttempts) {
-						// wpLink not ready yet, try again
-						attempts++;
-						setTimeout(tryOpen, 50);
-					} else {
-						console.error(
-							"wpLink modal failed to initialize after multiple attempts"
-						);
-					}
-				};
-
-				// Start trying to open
-				tryOpen();
+						if ($urlField.length) $urlField.val(currentUrl);
+						if ($textField.length) $textField.val(currentText);
+						if ($targetField.length)
+							$targetField.prop("checked", currentTarget);
+					}, 100);
+				} catch (e) {
+					console.error("Error opening wpLink:", e);
+				}
 			}
 		}
 
@@ -166,28 +115,6 @@
 			$removeBtn.on("click", function (e) {
 				e.preventDefault();
 				updateLinkDisplay($field, "", "", "");
-			});
-		}
-
-		// Open link in new tab when clicking external icon
-		if ($externalBtn.length && $linkUrl.length) {
-			$externalBtn.on("click", function (e) {
-				e.preventDefault();
-				const url = $linkUrl.attr("href");
-				if (url) {
-					window.open(url, "_blank", "noopener,noreferrer");
-				}
-			});
-		}
-
-		// Prevent navigation when clicking the link URL itself - use external button instead
-		if ($linkUrl.length) {
-			$linkUrl.on("click", function (e) {
-				e.preventDefault();
-				// Optionally trigger the external button click
-				if ($externalBtn.length) {
-					$externalBtn.trigger("click");
-				}
 			});
 		}
 	}
