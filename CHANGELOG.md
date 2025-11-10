@@ -2,7 +2,13 @@
 
 ### [Unreleased]
 
-- Add link picker field with WordPress's built-in link modal
+### [1.2.0] - 2025-11-10
+
+- feat: ✨ add link field type
+- refactor: ♻️ fields for better modularity
+- chore: 🛠️ update composer.json and composer.lock to include johnpbloch/wordpress as a development dependency
+- chore: 📝 add CHANGELOG.md to document version history and updates
+- chore: 📝 add release process guidelines to streamline version updates
 
 ### [1.1.2] - 2023-07-14
 
