@@ -332,3 +332,7 @@ add_action( 'admin_init', function() {
 ## Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for a list of changes and version history.
+
+## Release Process
+
+For release instructions, see the `.cursor/rules/release-process.mdc` file. This file contains a cursor rule that can be optionally used to guide the release process.

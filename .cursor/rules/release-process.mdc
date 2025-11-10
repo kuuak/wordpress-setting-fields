@@ -1,0 +1,32 @@
+---
+alwaysApply: false
+---
+
+# Release Process
+
+**Important**: If the new version number is not explicitly provided or clear from the context, ask the user for the version number before proceeding.
+
+When preparing a new release, update the following files with the new version number:
+
+1. **composer.json**
+
+   - Update the `version` field to the new version (e.g., `1.2.0`)
+
+2. **include/Helpers/UriHelper.php**
+
+   - Update the `WSFD_VERSION` constant to the new version (e.g., `'1.2.0'`)
+
+3. **CHANGELOG.md**
+   - Check git log history to find all commits since the last release to ensure the CHANGELOG is complete
+   - Move all entries from the `[Unreleased]` section to a new version section
+   - Format: `### [X.Y.Z] - YYYY-MM-DD`
+   - Add today's date in YYYY-MM-DD format
+   - Keep the `[Unreleased]` section empty for future changes
+
+## Example
+
+When releasing version 1.2.0:
+
+- `composer.json`: `"version": "1.2.0"`
+- `include/Helpers/UriHelper.php`: `define('WSFD_VERSION', '1.2.0');`
+- `CHANGELOG.md`: Move Unreleased entries to `### [1.2.0] - 2025-11-10`
