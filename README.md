@@ -2,6 +2,19 @@
 
 WordPress setting field functions to output different type of fields.
 
+## Field Types Summary
+
+Quick reference to all available field types:
+
+- [Text](#text) - Text input and textarea fields
+- [Dropdown](#dropdown) - Select dropdown with custom options
+- [Switch (toggle)](#switch-toggle) - Toggle/checkbox switch field
+- [Post type (dropdown)](#post-type-dropdown) - Dropdown populated with posts of specified post types
+- [Taxonomy (dropdown)](#taxonomy-dropdown) - Dropdown populated with taxonomy terms
+- [Pages (dropdown)](#pages-dropdown) - Dropdown populated with WordPress pages
+- [Button](#button) - Button field with action support
+- [Link (picker)](#link-picker) - Link picker field using WordPress's built-in link modal
+
 ## Field types
 
 ### Text
