@@ -16,7 +16,7 @@ Arguments:
 | name | string | true | Name of the input
 | value | string | false | Optional. Current value of the input
 | required | boolean | false | Optional. Whether the input is required. Default false
-| placeholder | string | false | Optional. 
+| placeholder | string | false | Optional.
 | attrs | array | false | Optional. Extra html atrributes for the input. Attributes' name are the keys of the associative array.
 | help | string | false | Optional. Help / description
 
@@ -43,7 +43,6 @@ add_action( 'admin_init', function() {
 } );
 ```
 
-
 ### Dropdown
 
 Name: **Kuuak\WordPressSettingFields\Fields::dropdown**
@@ -51,7 +50,7 @@ Name: **Kuuak\WordPressSettingFields\Fields::dropdown**
 Arguments:
 | name | type | mandatory | Description |
 | --- | --- | --- | --- |
-| id | string | false | Optional. Id attribute for the dropdown.  Default. the name argument
+| id | string | false | Optional. Id attribute for the dropdown. Default. the name argument
 | name | string | true | Name of the dropdown
 | multiple | boolean | false | Optional. Define if multiple options can be selected in the list.
 | selected | string|string[] | false | Optional. Selected value or values
@@ -86,7 +85,6 @@ add_action( 'admin_init', function() {
 } );
 ```
 
-
 ### Switch (toggle)
 
 Name: **Kuuak\WordPressSettingFields\Fields::switch**
@@ -119,27 +117,24 @@ add_action( 'admin_init', function() {
 } );
 ```
 
-
 ### Post type (dropdown)
 
 Name: **Kuuak\WordPressSettingFields\Fields::post_type_dropdown**
 
 Arguments:
 
-
-
-| name | type | mandatory | Description |
-| --- | --- | --- | --- |
-| query_args | array | false | WP_Query arguments. _See WP_Query::__construct() for accepted arguments_
-| name | string | true | Name of the dropdown
-| selected | int|string|int[]|string[] | false | Optional. Value of the option that should be selected. Default 0.
-| required | boolean | false | Optional. Whether the dropdown is required. Default false
-| placeholder | string | false | Optional. 
-| show_option_all | string | false | Optional. Option all label for the Multiple version. Default `All`
-| help | string | false | Optional. Help / description
-| echo | boolean | false | Optional. Either to print the dropdown or not. Default true.
-| nice_ui | boolean | false | Optional. Display as a nicer ui. Default true.
-| attrs | array | false | Optional. Extra html atrributes for the select input. Attributes' name are the keys of the associative array.
+| name            | type    | mandatory | Description                                                                                                   |
+| --------------- | ------- | --------- | ------------------------------------------------------------------------------------------------------------- | -------- | ----- | ----------------------------------------------------------------- |
+| query_args      | array   | false     | WP*Query arguments. \_See WP_Query::\_\_construct() for accepted arguments*                                   |
+| name            | string  | true      | Name of the dropdown                                                                                          |
+| selected        | int     | string    | int[]                                                                                                         | string[] | false | Optional. Value of the option that should be selected. Default 0. |
+| required        | boolean | false     | Optional. Whether the dropdown is required. Default false                                                     |
+| placeholder     | string  | false     | Optional.                                                                                                     |
+| show_option_all | string  | false     | Optional. Option all label for the Multiple version. Default `All`                                            |
+| help            | string  | false     | Optional. Help / description                                                                                  |
+| echo            | boolean | false     | Optional. Either to print the dropdown or not. Default true.                                                  |
+| nice_ui         | boolean | false     | Optional. Display as a nicer ui. Default true.                                                                |
+| attrs           | array   | false     | Optional. Extra html atrributes for the select input. Attributes' name are the keys of the associative array. |
 
 > Example of usage
 
@@ -174,18 +169,18 @@ Name: **Kuuak\WordPressSettingFields\Fields::taxonomy_dropdown**
 
 Arguments:
 
-_See WP_Term_Query::__construct() for information on additional accepted arguments_
+_See WP_Term_Query::\_\_construct() for information on additional accepted arguments_
 
-| name | type | mandatory | Description |
-| --- | --- | --- | --- |
-| name | string | true | Name of the dropdown
-| taxonomy | string | true | Name of the taxonomy to
-| selected | int|string|int[]|string[] | false | Optional. Value of the option that should be selected. Default 0.
-| required | boolean | false | Optional. Whether the dropdown is required. Default false
-| show_option_all | string | false | Optional. Option all label for the Multiple version. Default `All`
-| hide_empty | string | false | Optional. Option all label
-| help | string | false | Optional. Help / description
-| echo | boolean | false | Optional. Either to print the dropdown or not. Default true.
+| name            | type    | mandatory | Description                                                        |
+| --------------- | ------- | --------- | ------------------------------------------------------------------ | -------- | ----- | ----------------------------------------------------------------- |
+| name            | string  | true      | Name of the dropdown                                               |
+| taxonomy        | string  | true      | Name of the taxonomy to                                            |
+| selected        | int     | string    | int[]                                                              | string[] | false | Optional. Value of the option that should be selected. Default 0. |
+| required        | boolean | false     | Optional. Whether the dropdown is required. Default false          |
+| show_option_all | string  | false     | Optional. Option all label for the Multiple version. Default `All` |
+| hide_empty      | string  | false     | Optional. Option all label                                         |
+| help            | string  | false     | Optional. Help / description                                       |
+| echo            | boolean | false     | Optional. Either to print the dropdown or not. Default true.       |
 
 > Example of usage
 
@@ -215,13 +210,13 @@ Arguments:
 
 _See get_pages() for additional arguments_
 
-| name | type | mandatory | Description |
-| --- | --- | --- | --- |
-| name | string | true | Name of the dropdown
-| selected | int|string | false | Optional. Value of the option that should be selected. Default 0.
-| required | boolean | false | Optional. Whether the dropdown is required. Default false
-| help | string | false | Optional. Help / description. Default empty
-| echo | boolean | false | Optional. Either to print the dropdown or not. Default true.
+| name     | type    | mandatory | Description                                                  |
+| -------- | ------- | --------- | ------------------------------------------------------------ | ----------------------------------------------------------------- |
+| name     | string  | true      | Name of the dropdown                                         |
+| selected | int     | string    | false                                                        | Optional. Value of the option that should be selected. Default 0. |
+| required | boolean | false     | Optional. Whether the dropdown is required. Default false    |
+| help     | string  | false     | Optional. Help / description. Default empty                  |
+| echo     | boolean | false     | Optional. Either to print the dropdown or not. Default true. |
 
 > Example of usage
 
@@ -242,24 +237,23 @@ add_action( 'admin_init', function() {
 } );
 ```
 
-
 ### Button
 
 Name: **Kuuak\WordPressSettingFields\Fields::button**
 
 Arguments:
 
-| name | type | mandatory | Description |
-| --- | --- | --- | --- |
-| id | string | false | Optional. Id attribute for the button. Default. the name argument
-| name | string | true | Name of the button
-| label | string | true | Label of the button
-| variant | string | false | Optional. Variant of the button. `primary` or `secondary`. Default secondary
-| action | array | false | Action data
-| action.name | string | true | Action name
-| action.value | string | true | Action value
-| wrapper_attrs | array | false | Optional. Extra html atrributes for the wrapper. Attributes' name are the keys of the associative array.
-| help | string | false | Optional. Help / description. Default empty
+| name          | type   | mandatory | Description                                                                                              |
+| ------------- | ------ | --------- | -------------------------------------------------------------------------------------------------------- |
+| id            | string | false     | Optional. Id attribute for the button. Default. the name argument                                        |
+| name          | string | true      | Name of the button                                                                                       |
+| label         | string | true      | Label of the button                                                                                      |
+| variant       | string | false     | Optional. Variant of the button. `primary` or `secondary`. Default secondary                             |
+| action        | array  | false     | Action data                                                                                              |
+| action.name   | string | true      | Action name                                                                                              |
+| action.value  | string | true      | Action value                                                                                             |
+| wrapper_attrs | array  | false     | Optional. Extra html atrributes for the wrapper. Attributes' name are the keys of the associative array. |
+| help          | string | false     | Optional. Help / description. Default empty                                                              |
 
 > Example of usage
 
@@ -280,7 +274,53 @@ add_action( 'admin_init', function() {
 } );
 ```
 
+### Link (picker)
+
+Name: **Kuuak\WordPressSettingFields\Fields::link**
+
+Renders a link field with WordPress's built-in link picker modal. Allows users to search for internal posts/pages or enter a custom URL. The field stores URL, link text, and target (for "open in new tab") values.
+
+Arguments:
+
+| name     | type          | mandatory | Description                                                                                                             |
+| -------- | ------------- | --------- | ----------------------------------------------------------------------------------------------------------------------- |
+| id       | string        | false     | Optional. Id attribute for the field. Default. the name argument                                                        |
+| name     | string        | true      | Name of the field. The field will create sub-fields: `name[url]`, `name[text]`, `name[target]`                          |
+| value    | array\|string | false     | Optional. Current value. Can be a string (URL only) or an array with keys: `url`, `text`, `target`. Default empty array |
+| required | boolean       | false     | Optional. Whether the URL input is required. Default false                                                              |
+| help     | string        | false     | Optional. Help / description. Default empty                                                                             |
+
+> Example of usage
+
+```php
+add_action( 'admin_init', function() {
+  add_settings_field(
+    'my-setting-id',
+    __('My setting', 'my-setting-domain'),
+    'Kuuak\WordPressSettingFields\Fields::link',
+    'setting-page-id',
+    'setting-section-id',
+    [
+      'label_for' => 'my-setting-id',
+      'name'      => 'my-setting-name',
+      'value'     => [
+        'url'    => 'https://example.com',
+        'text'   => 'Link Text',
+        'target' => '_blank'
+      ],
+      'help'      => 'Pick a post/page or paste a custom URL.',
+    ]
+  );
+} );
+```
+
+> Note: When saving the form, the field will submit as an array with `url`, `text`, and `target` keys. The `target` value will be `_blank` if "open in new tab" is checked, or empty string otherwise.
+
 ## Changelog
+
+### [Unreleased]
+
+- Add link picker field with WordPress's built-in link modal
 
 ### [1.1.2] - 2023-07-14
 
@@ -302,4 +342,3 @@ add_action( 'admin_init', function() {
 ### [1.0.0] - 2023-06-15
 
 - Initial release
-
