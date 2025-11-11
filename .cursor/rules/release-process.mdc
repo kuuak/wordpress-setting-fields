@@ -8,20 +8,27 @@ alwaysApply: false
 
 When preparing a new release, update the following files with the new version number:
 
-1. **composer.json**
+1.  **composer.json**
 
-   - Update the `version` field to the new version (e.g., `1.2.0`)
+- Update the `version` field to the new version (e.g., `1.2.0`)
 
-2. **include/Helpers/UriHelper.php**
+2.  **include/Helpers/UriHelper.php**
 
-   - Update the `WSFD_VERSION` constant to the new version (e.g., `'1.2.0'`)
+- Update the `WSFD_VERSION` constant to the new version (e.g., `'1.2.0'`)
 
-3. **CHANGELOG.md**
-   - Check git log history to find all commits since the last release to ensure the CHANGELOG is complete
-   - Move all entries from the `[Unreleased]` section to a new version section
-   - Format: `### [X.Y.Z] - YYYY-MM-DD`
-   - Add today's date in YYYY-MM-DD format
-   - Keep the `[Unreleased]` section empty for future changes
+3.  **CHANGELOG.md**
+
+- Check git log history to find all commits since the last release to ensure the CHANGELOG is complete
+- Move all entries from the `[Unreleased]` section to a new version section
+- Format: `### [X.Y.Z] - YYYY-MM-DD`
+- Add today's date in YYYY-MM-DD format
+- Keep the `[Unreleased]` section empty for future changes
+
+4.  **Create commit message**
+
+- add all changes files to staged changes
+- prefill commit message in cursor Source control panel with `chore: 🚀 vx.x.x`
+- do not commit
 
 ## Example
 
@@ -30,3 +37,5 @@ When releasing version 1.2.0:
 - `composer.json`: `"version": "1.2.0"`
 - `include/Helpers/UriHelper.php`: `define('WSFD_VERSION', '1.2.0');`
 - `CHANGELOG.md`: Move Unreleased entries to `### [1.2.0] - 2025-11-10`
+- `git add .`
+- `commit message `chore: 🚀 v1.2.0`
