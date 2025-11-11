@@ -2,6 +2,11 @@
 
 ### [Unreleased]
 
+### [1.2.2] - 2025-11-11
+
+- fix: 🐛 link picker not correctly removing textarea form DOM
+- chore: 📝 update release process documentation to include commit message guidelines and formatting
+
 ### [1.2.1] - 2025-11-10
 
 - fix: 🐛 link picker opening

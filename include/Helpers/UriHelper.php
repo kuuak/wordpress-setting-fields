@@ -3,7 +3,7 @@
 namespace Kuuak\WordPressSettingFields\Helpers;
 
 if (!defined('WSFD_VERSION')) {
-	define('WSFD_VERSION', '1.2.1');
+	define('WSFD_VERSION', '1.2.2');
 }
 
 class UriHelper {
