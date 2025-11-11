@@ -124,22 +124,22 @@
 	$(document).on("click", "#wp-link-submit", function (e) {
 		e.preventDefault();
 
-		const currentTextareaReference = $(`#${LINK_TEXTAREA_ID}`);
+		const $textareaRef = $(`#${LINK_TEXTAREA_ID}`);
 
-		if (!currentTextareaReference) {
+		if (!$textareaRef) {
 			console.error("No textarea reference found!");
 			return;
 		}
 
 		const $currentField = $(
-			`[data-field-id="${currentTextareaReference.data("fieldId")}"]`
+			`[data-field-id="${$textareaRef.data("fieldId")}"]`
 		);
 
 		if (!$currentField || !$currentField.length) {
 			console.error(
 				"No field reference found!",
 				"Module var:",
-				currentFieldReference,
+				$currentField,
 				"Modal data:",
 				$("#wp-link-wrap").data("wsfd-link-field")
 			);
@@ -156,9 +156,6 @@
 		if (typeof wpLink !== "undefined") {
 			wpLink.close();
 		}
-
-		// Clear textarea reference
-		$("body").remove(currentTextareaReference);
 	});
 
 	// Handle cancel button click
@@ -168,26 +165,24 @@
 			wpLink.close();
 		}
 
-		const currentTextareaReference = $(`#${LINK_TEXTAREA_ID}`);
-		if (!currentTextareaReference) {
+		const $textareaRef = $(`#${LINK_TEXTAREA_ID}`);
+		if (!$textareaRef) {
 			console.error("No textarea reference found!");
 			return;
 		}
-
-		// Clear textarea reference
-		$("body").remove(currentTextareaReference);
 	});
 
 	// Also handle the modal close event
 	$(document).on("wplink-close", function () {
-		const currentTextareaReference = $(`#${LINK_TEXTAREA_ID}`);
-		if (!currentTextareaReference) {
+		const $textareaRef = $(`#${LINK_TEXTAREA_ID}`);
+		if (!$textareaRef) {
 			console.error("No textarea reference found!");
 			return;
 		}
 
-		// Clear textarea reference
-		$("body").remove(currentTextareaReference);
+		// Clear textarea reference,
+		// run after a short delay to ensure we correctly processed the data before removing the textarea.
+		setTimeout(() => $textareaRef.remove(), 200);
 	});
 
 	/**
